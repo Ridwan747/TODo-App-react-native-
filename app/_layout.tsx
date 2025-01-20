@@ -5,6 +5,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import App from '../App'
+import MainScreen from '../src/MainScreen'
+import Registration from '../src/Authentication/Registration'
+import Login from '../src/Authentication/Login';
+import Dashboard from '../src/Dashboard'
+import { NavigationContainer } from '@react-navigation/native';
+
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -28,12 +35,6 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+   <App/>
   );
 }

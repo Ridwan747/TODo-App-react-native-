@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, Image, TextInput, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
-import { useNavigation } from "expo-router";
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const Login = () => {

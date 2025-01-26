@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Touchable, TouchableOpacity, Image, Pressable } from 'react-native'
 import React from 'react'
-import { useNavigation } from "expo-router";
 import { sortRoutes } from "expo-router/build/sortRoutes";
+import { useNavigation } from '@react-navigation/native';
 const Registration = () => {
    const navigation = useNavigation()
   return (

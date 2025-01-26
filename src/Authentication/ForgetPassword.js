@@ -1,7 +1,8 @@
 import { StyleSheet, Text, TextInput, View , TouchableOpacity} from 'react-native'
 import React from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
-import { useNavigation } from "expo-router";
+import { useNavigation } from '@react-navigation/native';
+
 
 const ForgetPassword = () => {
     const navigation=useNavigation()
@@ -18,12 +19,12 @@ const ForgetPassword = () => {
         <View style={styles.register}>
                 <TouchableOpacity style={styles.button}
                 onPress={()=>navigation.navigate("SendCode")}>
-                  <Text style={styles.press}>Send code</Text>
+                <Text style={styles.press}>Send code</Text>
                 </TouchableOpacity>
                 </View>
                 
     </View>
-  )
+ )
 }
 
 export default ForgetPassword
@@ -66,7 +67,13 @@ const styles = StyleSheet.create({
         borderRadius:10,
         padding: 10,
         marginRight:10,
-        paddingRight:150,
+        marginLeft:10,
+        paddingRight:120,
+        marginBottom: 20,
+        borderRadius: 20,
+        padding: 10,
+        paddingLeft: 10,
+        
     },
     register: {
         marginTop: 20,

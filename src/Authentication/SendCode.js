@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
-import { useNavigation } from "expo-router";
+import { useNavigation } from '@react-navigation/native';
+
 
 
 const SendCode = () => {
@@ -26,7 +27,7 @@ const SendCode = () => {
         </View>
          <View style={styles.register}>
                         <TouchableOpacity style={styles.button}
-                        onPress={()=>navigation.navigate("SendCode")}>
+                        onPress={()=>navigation.navigate("ResetPassword")}>
                           <Text style={styles.press}>Verify your code</Text>
                         </TouchableOpacity>
                         </View>

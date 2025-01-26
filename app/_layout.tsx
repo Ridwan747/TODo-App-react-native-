@@ -9,7 +9,7 @@ import App from '../App'
 import MainScreen from '../src/MainScreen'
 import Registration from '../src/Authentication/Registration'
 import Login from '../src/Authentication/Login';
-import Dashboard from '../src/Dashboard'
+import Dashboard from '../src/DashboardContainer/Dashboard'
 import { NavigationContainer } from '@react-navigation/native';
 
 

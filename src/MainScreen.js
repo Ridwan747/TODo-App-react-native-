@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
-import { useNavigation } from "expo-router";
 import { sortRoutes } from "expo-router/build/sortRoutes";
+import { useNavigation } from '@react-navigation/native';
 const MainScreen = () => {
   const navigation = useNavigation()
   return (

@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
-import { useNavigation } from "expo-router";
+import { useNavigation } from '@react-navigation/native';
+
+
 
 const Dashboard = () => {
-  const navigate = useNavigation()
+  const navigation=useNavigation()
   return (
     <View style={styles.container}>
 
       <View style={styles.secondContainer}>
         <Image
-          source={require("../assets/images/shape.png")}
+          source={require("../../assets/images/shape.png")}
           style={{ width: 370, height: 260, marginBottom: -150, backfaceVisibility: 'visible', backgroundColor: '#e1a388', }} />
 
       </View>
@@ -18,7 +20,7 @@ const Dashboard = () => {
       <View style={styles.imageView}>
 
         <Image
-          source={require("../assets/images/image2.png")}
+          source={require("../../assets/images/image2.png")}
           style={{ width: 75, height: 75, marginLeft: 15, marginBottom: -2 }} />
       </View>
       <View style={styles.textView}>
@@ -34,7 +36,7 @@ const Dashboard = () => {
       <View style={styles.clockImage}>
 
         <Image
-          source={require("../assets/images/clock.png")}
+          source={require("../../assets/images/clock.png")}
           style={{ width: 110, height: 110, }} />
       </View>
 
@@ -43,32 +45,35 @@ const Dashboard = () => {
       </View>
       <View style={styles.dailyTaskView}>
         <Text style={styles.Text}>Daily Tasks</Text>
+        <Pressable
+        onPress={()=>navigation.navigate('AddTask')}>
         <Image
-          source={require("../assets/images/plus.png")}
+          source={require("../../assets/images/plus.png")}
           style={{ width: 24, height: 24, marginLeft: 290, marginBottom: -10, top: -20 }} />
+          </Pressable>
         <View style={styles.listTaskView}>
           <Image
-            source={require("../assets/images/Rectangle.png")}
+            source={require("../../assets/images/Rectangle.png")}
             style={{ width: 10, height: 10, marginLeft: 15 }} />
           <Text style={styles.textOne}>Learn programming by 12am</Text>
 
           <Image
-            source={require("../assets/images/Rectangle.png")}
+            source={require("../../assets/images/Rectangle.png")}
             style={{ width: 10, height: 10, marginLeft: 15 }} />
           <Text style={styles.textTwo}>Learn how to cook by 1pm</Text>
 
           <Image
-            source={require("../assets/images/Rectangle.png")}
+            source={require("../../assets/images/Rectangle.png")}
             style={{ width: 10, height: 10, marginLeft: 15 }} />
           <Text style={styles.textThree}>Pick up the kid by 2pm</Text>
 
           <Image
-            source={require("../assets/images/Rectangle.png")}
+            source={require("../../assets/images/Rectangle.png")}
             style={{ width: 10, height: 10, marginLeft: 15 }} />
           <Text style={styles.textFour}>Have launch by 3pm</Text>
 
           <Image
-            source={require("../assets/images/Rectangle.png")}
+            source={require("../../assets/images/Rectangle.png")}
             style={{ width: 10, height: 10, marginLeft: 15, top: -9 }} />
           <Text style={styles.textFive}>Go visit mum by 4pm</Text>
         </View>

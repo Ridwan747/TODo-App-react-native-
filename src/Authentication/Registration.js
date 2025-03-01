@@ -1,9 +1,54 @@
 import { StyleSheet, Text, View, TextInput, Touchable, TouchableOpacity, Image, Pressable } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Server from '@/constants/server';
+
+//const server = "http://192.168.156.189:5000/api/auth"
+
+
 const Registration = () => {
+
+  const [name, setName] = useState()
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()  
+
    const navigation = useNavigation()
+
+   const handleRegister = async () => {
+    try {
+      const response = await axios.post(`${Server.serverAuth}/register`, {
+        name: name,
+        email: email,
+        password: password
+      });
+  
+      // Accessing the "status" field from response.data
+      if (response.data.status === "success") {
+        const token = response.data.token
+
+        await AsyncStorage.setItem("userToken",token)
+        console.log("Token:", token)
+        console.log("Registered successfully");
+        console.log(response.data); // Prints the full response data
+        navigation.navigate('Login')
+      } else {
+        console.log("Registration failed:", response.data.message);
+      }
+  
+    } catch (err) {
+      if (err.response) {
+        console.log("Error:", err.response.data);
+      } else {
+        console.log("Network error:", err.message);
+      }
+    }
+  };
+  
+ 
+
   return (
     <View style={styles.container}>
 
@@ -21,12 +66,21 @@ const Registration = () => {
         </View>
         <View style={styles.thirdContainer}>
           <TextInput style={styles.nameText}
-            placeholder='Enter your full name' />
+            placeholder='Enter your full name' 
+            value={name}
+            onChangeText={setName}
+            />
           <TextInput style={styles.emailText}
-            placeholder='Enter your email' />
+            placeholder='Enter your email'
+            value={email}
+            onChangeText={setEmail}
+             />
           <TextInput style={styles.passwordText}
             placeholder='Enter password' 
-            secureTextEntry={true}/>
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+            />
           <TextInput style={styles.confirmPasswordText}
             placeholder='Confirm password'
             secureTextEntry={true} />
@@ -36,7 +90,7 @@ const Registration = () => {
       </View>
       <View style={styles.register}>
         <TouchableOpacity style={styles.button}
-        onPress={()=>navigation.navigate("Dashboard")}>
+          onPress={handleRegister}>
           <Text style={styles.press}>Register</Text>
         </TouchableOpacity>
       </View>

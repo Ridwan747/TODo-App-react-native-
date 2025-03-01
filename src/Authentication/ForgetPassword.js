@@ -1,12 +1,66 @@
 import { StyleSheet, Text, TextInput, View , TouchableOpacity} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { sortRoutes } from "expo-router/build/sortRoutes";
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Server from '@/constants/server';
 
-
+//const server = "http://192.168.156.189:5000/api/auth";
 const ForgetPassword = () => {
     const navigation=useNavigation()
+
+     const [email, setEmail] = useState();
+    
+     
+
+      const handleForgotPassword = async () => {
+    
+        const token =  await AsyncStorage.getItem("userToken")
+      
+        // if(!token){
+        //   alert("Token is absent")
+        // }
+        if (!email) {
+          alert("Please enter your email");
+          return;
+        }
+      
+      
+          try {
+            const response = await axios.post(`${Server.serverAuth}/forgotPassword`, {
+              email: email,
+             
+            },{
+              headers:{
+                "Authorization":`Bearer ${token}`
+              }
+            });
+      
+            // Accessing the "status" field from response.data
+            if (response.data.status === "success") {
+              console.log("email sent successfully");
+              console.log(response.data); // Prints the full response data
+      
+              navigation.navigate('SendCode', {userEmail:email})
+            } else {
+              console.log("password failed:", response.data.message);
+            }
+         } catch (err) {
+            if (err.response) {
+              
+              console.log("Error:", err.response.data);
+             
+      
+            } else {
+              console.log("Network error:", err.message);
+            }
+          }
+        };
+      
   return (
+
+
     <View style={styles.container}>
         <View style={styles.TextContainer}>
         <Text style={styles.text}>Forget Password!</Text>
@@ -14,11 +68,13 @@ const ForgetPassword = () => {
         </View>
         <View style={styles.secondContainer}>
             <TextInput style={styles.emailText}
-             placeholder='Enter your email' />
+             placeholder='Enter your email' 
+             value={email}
+             onChangeText={setEmail}/>
         </View>
         <View style={styles.register}>
                 <TouchableOpacity style={styles.button}
-                onPress={()=>navigation.navigate("SendCode")}>
+                onPress={handleForgotPassword}>
                 <Text style={styles.press}>Send code</Text>
                 </TouchableOpacity>
                 </View>
@@ -58,10 +114,9 @@ const styles = StyleSheet.create({
     
     secondContainer: {
         marginBottom: 20,
+        
     },
     emailText: {
-        width: '90%',
-        height: 40,
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius:10,

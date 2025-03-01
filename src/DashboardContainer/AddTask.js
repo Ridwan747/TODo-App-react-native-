@@ -17,14 +17,14 @@ const AddTask = () => {
                 <View style={styles.secondContainer}>
                     <View style={styles.register}>
                         <TouchableOpacity style={styles.button}
-                            onPress={() => navigation.navigate("Login")}>
+                            onPress={() => navigation.navigate("Form")}>
                             <Text style={styles.press}>Add Single Task</Text>
                         </TouchableOpacity>
                     </View>
 
                     <View style={styles.register}>
                         <TouchableOpacity style={styles.button}
-                            onPress={() => navigation.navigate("Login")}>
+                            onPress={() => navigation.navigate("")}>
                             <Text style={styles.press}>Add Multiple Task</Text>
                         </TouchableOpacity>
                     </View>

@@ -11,9 +11,12 @@ import Registration from '../src/Authentication/Registration'
 import Login from '../src/Authentication/Login';
 import Dashboard from '../src/DashboardContainer/Dashboard'
 import { NavigationContainer } from '@react-navigation/native';
+import Time from '../src/DashboardContainer/Time'
+
 
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { AppState } from 'react-native';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
